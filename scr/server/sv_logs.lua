@@ -1,9 +1,11 @@
 -- Define the webhook URL here
-local webhookURL = "OWN WEBHOOK URL"
+local webhookURL = "OWN_WEBHOOK_LINK"
 
 function sendToDiscord(color, title, fields, username, avatarURL)
     if not webhookURL or webhookURL == "" then
-        print("^1[ERROR] Geen webhook URL opgegeven in de configuratie^7")
+        if Config.Debug then
+            print("^1[ERROR] Geen webhook URL opgegeven in de configuratie^7")
+        end
         return
     end
 
@@ -26,7 +28,9 @@ function sendToDiscord(color, title, fields, username, avatarURL)
 
     PerformHttpRequest(webhookURL, function(err, text, headers)
         if err ~= 200 then
-            print("^1[ERROR] Discord Webhook fout: " .. err .. "^7")
+            if Config.Debug then
+                print("^1[ERROR] Discord Webhook fout: " .. err .. "^7")
+            end
         end
     end, 'POST', json.encode(payload), { ['Content-Type'] = 'application/json' })
 end

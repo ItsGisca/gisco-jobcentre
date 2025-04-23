@@ -2,7 +2,7 @@ Config = {}
 
 Config.Debug = false -- Only use when in Development
 
-Config.DiscordLogs = true -- WEBHOOK CAN BE ADDED IN THE sv_logs.lua FOR SAFETY OF YOU WEBHOOK URL
+Config.DiscordLogs = false -- WEBHOOK CAN BE ADDED IN THE sv_logs.lua FOR SAFETY OF YOU WEBHOOK URL
 
 Config.DebugCommand = "jobcentredebug"
 
@@ -13,7 +13,7 @@ Config.Locale = "nl" -- "EN" or "NL"
 Config.Jobcentre = {
     Method = "ox_target", -- "ox_target" or "TextUI"
 
-    OpenKey = 38, -- ONLY WHEN METHOD IS ON OX_TARGET | 38 = E
+    OpenKey = 38, -- ONLY WHEN METHOD IS ON TextUI | 38 = E
     
     Blip = {
         Enabled = true,

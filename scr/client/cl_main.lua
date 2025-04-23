@@ -76,7 +76,6 @@ end)
 function OpenJobCentre()
     local options = {}
 
-    -- Dynamisch opties toevoegen vanuit de configuratie
     for _, job in pairs(Config.Jobcentre.Jobs) do
         table.insert(options, {
             title = job.label,
@@ -85,28 +84,24 @@ function OpenJobCentre()
             onSelect = function()
                 local playerPed = PlayerPedId()
                 local playerCoords = GetEntityCoords(playerPed)
-                local npcCoords = Config.Jobcentre.JobNPC[1].coords -- Neem de eerste NPC-coördinaten
+                local npcCoords = Config.Jobcentre.JobNPC[1].coords
 
-                -- Controleer of de speler binnen 30 meter is
                 if #(playerCoords - npcCoords) > 30.0 then
                     print(TranslateCap('too_far_title'))
                     return
                 end
 
-                -- Stuur verzoek naar de server
                 TriggerServerEvent('gisco-jobcentre:setJob', job.name)
             end
         })
     end
 
-    -- Contextmenu registreren
     lib.registerContext({
         id = 'banencentrum',
         title = TranslateCap('banencentrum_title'),
         options = options
     })
 
-    -- Contextmenu openen
     lib.showContext('banencentrum')
 end
 

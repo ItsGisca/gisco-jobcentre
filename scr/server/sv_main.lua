@@ -5,7 +5,6 @@ RegisterNetEvent('gisco-jobcentre:setJob', function(jobName)
     local xPlayer = ESX.GetPlayerFromId(src)
     if not xPlayer then return end
 
-    -- Controleer of de job in de configuratie staat
     local jobExists = false
     for _, job in pairs(Config.Banencentrum.Jobs) do
         if job.name == jobName then
@@ -15,37 +14,35 @@ RegisterNetEvent('gisco-jobcentre:setJob', function(jobName)
     end
 
     if not jobExists then
-        DropPlayer(src, "Je hebt geprobeerd een ongeldige job te selecteren.")
+        DropPlayer(src, TranslateCap('job_changed_log_description'))
         return
     end
 
-    -- Controleer of de speler binnen 30 meter van de NPC is
     local playerCoords = GetEntityCoords(GetPlayerPed(src))
-    local npcCoords = Config.Banencentrum.JobNPC[1].coords -- Neem de eerste NPC-coördinaten
+    local npcCoords = Config.Banencentrum.JobNPC[1].coords 
 
     if #(playerCoords - npcCoords) > 30.0 then
-        DropPlayer(src, "Je bent te ver weg van het Banencentrum.")
+        DropPlayer(src, TranslateCap('too_far_title'))
         return
     end
 
-    -- Zet de job
     xPlayer.setJob(jobName, 0)
 
     local playerLicense = xPlayer.identifier
     if Config.DiscordLogs then
-        sendToDiscord(0, "Baan Veranderd", {
+        sendToDiscord(0, TranslateCap('job_changed_log'), {
             {
-                ["name"] = "> Steanname",
+                ["name"] = "> " .. TranslateCap('steam_name'),
                 ["value"] = "```\n" .. GetPlayerName(src) .. "\n```",
                 ["inline"] = true
             },
             {
-                ["name"] = "> LICENSE",
+                ["name"] = "> " .. TranslateCap('license'),
                 ["value"] = "```\n" .. playerLicense .. "\n```",
                 ["inline"] = false
             },
             {
-                ["name"] = "> NEW JOB",
+                ["name"] = "> " .. TranslateCap('new_job'),
                 ["value"] = "```\n" .. jobName .. "\n```",
                 ["inline"] = false
             }

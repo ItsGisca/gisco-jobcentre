@@ -8,7 +8,7 @@ Config.DebugCommand = "jobcentredebug"
 
 Config.Notify = "ox" -- "ox", "okok", "esx", "a-notify", "custom" (custom = add your own in cl_functions.lua)
 
-Config.Locale = "nl" -- "EN" or "NL"
+Config.Locale = "en" -- "EN" or "NL"
 
 Config.Jobcentre = {
     Method = "ox_target", -- "ox_target" or "TextUI"

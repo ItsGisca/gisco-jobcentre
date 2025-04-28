@@ -1,5 +1,5 @@
 Locales['en'] = {
-    ['banencentrum_title'] = 'Job Centre',
+    ['jobcentre_title'] = 'Job Centre',
     ['select_job_description'] = 'Select this job: %s',
     ['job_changed_title'] = 'Job Changed',
     ['job_changed_description'] = 'You have been hired as %s!',

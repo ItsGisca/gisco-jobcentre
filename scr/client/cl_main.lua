@@ -98,7 +98,7 @@ function OpenJobCentre()
 
     lib.registerContext({
         id = 'banencentrum',
-        title = TranslateCap('banencentrum_title'),
+        title = TranslateCap('jobcentre_title'),
         options = options
     })
 

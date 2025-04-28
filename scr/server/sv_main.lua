@@ -6,7 +6,7 @@ RegisterNetEvent('gisco-jobcentre:setJob', function(jobName)
     if not xPlayer then return end
 
     local jobExists = false
-    for _, job in pairs(Config.Banencentrum.Jobs) do
+    for _, job in pairs(Config.Jobcentre.Jobs) do
         if job.name == jobName then
             jobExists = true
             break
@@ -19,7 +19,7 @@ RegisterNetEvent('gisco-jobcentre:setJob', function(jobName)
     end
 
     local playerCoords = GetEntityCoords(GetPlayerPed(src))
-    local npcCoords = Config.Banencentrum.JobNPC[1].coords 
+    local npcCoords = Config.Jobcentre.JobNPC[1].coords 
 
     if #(playerCoords - npcCoords) > 30.0 then
         DropPlayer(src, TranslateCap('too_far_title'))
